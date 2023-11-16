@@ -1,0 +1,38 @@
+version: '3.8'
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+services:
+  # springboot-app-db-connector:
+  #   build:
+  #     context: ./DbConnector
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5690:5690"
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   volumes:
+  #     - ./DbConnector/:/app
+  #     - maven-repo:/root/.m2
+  #   networks:
+  #     - app-network
+
+  fastapi-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    # depends_on:
+    #   - springboot-app-db-connector
+    environment:
+      - PYTHONUNBUFFERED=1
+#     networks:
+#       - app-network
+
+# volumes:
+#   maven-repo:

@@ -1,0 +1,30 @@
+version: '3.8'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+
+  informix-db:
+    image: icr.io/informix/informix-developer-database:latest
+    environment:
+      - IFX_SERVER=informix-db
+      - LICENSE=accept
+      - DB_USER=informix
+      - DB_PASSWORD=in4mix
+      - DB_NAME=sysmaster
+    ports:
+      - "27017:27017"
+      - "27018:27018"
+      - "27883:27883"
+      - "9088:9088"
+      - "9089:9089"
+    # networks:
+    #   - app-network
+    volumes:
+      - informix_data:/opt/ibm/data
+
+
+volumes:
+  informix_data:
