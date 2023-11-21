@@ -4,13 +4,7 @@ from starlette import status
 from app.services.demo.models import ObtenerMedicosResponse
 from app.services.demo.service import DemoService
 
-demo_router = APIRouter(
-    responses={
-        404: {
-            'description': 'Not found'
-        }
-    }
-)
+demo_router = APIRouter()
 
 
 @demo_router.get(

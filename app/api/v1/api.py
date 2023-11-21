@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from app.api.v1.routes.demo import demo_router
 from app.api.v1.routes.status import status_router
+from app.api.v1.routes.test import test_router
 
 api_v1 = APIRouter()
 
@@ -15,4 +16,10 @@ api_v1.include_router(
     demo_router,
     prefix='/demo',
     tags=['Servicios DEMO para conexion con IBM Informix']
+)
+
+api_v1.include_router(
+    test_router,
+    prefix='/test',
+    tags=['Rutas para realizar pruebas']
 )
