@@ -1,12 +1,12 @@
-from app.db.client import execute_sql_operation_return_list, execute_store_procedure_return_list
+from app.db.client import select_return_list, sp_return_list
 from app.services.demo.models import ObtenerMedicosResponse
 
 
 class DemoService:
     @staticmethod
     def obtener_medicos() -> ObtenerMedicosResponse:
-        sql = "SELECT * FROM medicos"
-        return execute_sql_operation_return_list(sql)
+        sql = "SELECT * FROM medicos ORDER BY idmedico DESC"
+        return select_return_list(sql)
 
     @staticmethod
     def obtene_medicos_filtro(i_nombre_medico: str) -> list:
@@ -26,4 +26,4 @@ class DemoService:
             "telefono",
             "id_ciudad"
         ]
-        return execute_store_procedure_return_list(sql, parameters, index_column_names)
+        return sp_return_list(sql, parameters, index_column_names)
