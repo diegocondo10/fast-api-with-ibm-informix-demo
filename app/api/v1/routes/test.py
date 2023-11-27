@@ -1,7 +1,6 @@
-import requests
 from fastapi import APIRouter
 
-from app.db.client import execute_store_procedure_return_list
+from app.db.client import sp_return_list
 from app.services.test.models import MedicoIn
 from app.services.test.service import TestService
 
@@ -71,7 +70,7 @@ async def obtener_datos(i_nombre_medico):
         }
     ]
 
-    return execute_store_procedure_return_list(
+    return sp_return_list(
         sql,
         index_column_names=index_column_names,
         parameters=parameters
