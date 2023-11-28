@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.db.client import sp_return_list
+from app.db.client import sp_return_list, select_return_list
 from app.services.test.models import MedicoIn
 from app.services.test.service import TestService
 
@@ -103,3 +103,9 @@ def test_body(body: MedicoIn):
     - **Ruta**: `/obtener-datos`
     '''
     return TestService.guardar_medico(body)
+
+
+
+@test_router.get('/prueba-bd')
+def prueba_bd():
+    return select_return_list('SELECT * FROM am_comunica')
